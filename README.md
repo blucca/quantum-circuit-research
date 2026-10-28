@@ -26,10 +26,44 @@ python invsqrt-piecewise-math.py
 
 The script independently compares scalar and vectorized integer Horner values in every block, checks the complete input range, and writes coefficients and progress under `temp/invsqrt-probe/`. The measured run used 0.219 CPU seconds and about 74 MiB peak RSS.
 
-## Next experiment
+## Measured reversible circuit
 
-Synthesize the reversible kickmix circuit, account for scratch cleanup and rotation precision, and compare measured qubits × Toffoli-equivalents against the paper’s approximate reference **260 × 7,988**. Gate cost and official verification are the next measurements.
+[`invsqrt-kickmix.py`](invsqrt-kickmix.py) implements the same integer arithmetic
+using public kickmix: leading-bit normalization, coefficient QROM, signed
+multiply-adds, exponent-dependent phasing, and exact scratch cleanup. It retains
+product history for a transparent first implementation.
 
-References: [benchmark paper](https://arxiv.org/abs/2610.23832), [kickmix](https://github.com/quantumlib/Qualtran/tree/main/kickmix). The arithmetic probe uses the public mathematical contract and its own generated inputs.
+**565 boundary and random inputs × 64 measurement shots = 36,160 passing shots.**
+Every sampled input is restored, every scratch wire is zero, and every phase
+matches the integer Horner result exactly. The probe took 0.562 CPU seconds.
+
+| Resource | Measured value |
+|---|---:|
+| Qubits | 284 |
+| Mean Toffoli-like gates | 9,252 |
+| T gates | 1 |
+| Finer-than-T rotations | 35 |
+| Toffoli-equivalents, paper synthesis formula | 9,487.19 |
+| Qubits × cost | 2,694,361 |
+| Fraction of the paper reference | 1.297× |
+
+[Measured output](results/invsqrt-circuit-kickmix.json) includes operation counts
+and rotation pricing. The existing full-input arithmetic probe supplies the
+minimum phase slack used to price synthesis. The complete 200,540,928-shot
+competition verifier remains a separate validation stage.
+
+```sh
+# Install kickmix from the public Qualtran kickmix directory, then:
+PROBE_OUT=temp/invsqrt-circuit-probe python invsqrt-kickmix.py
+```
+
+The research gate targeted half the reference resource cost. **This first
+cubic circuit failed that resource gate; active optimization of this recipe is
+stopped.** The integer approximation and reproducible circuit remain available
+as research artifacts. Competition submission: none.
+
+References: [benchmark paper](https://arxiv.org/abs/2610.23832),
+[kickmix](https://github.com/quantumlib/Qualtran/tree/main/kickmix), public source
+commit `638777fac4379bc62e2a1e4a52cf1a1753895d48`.
 
 Apache-2.0.
