@@ -1,0 +1,23 @@
+{
+  "phase": "complete",
+  "checked": 3133452,
+  "max_relative_error": 1.036310956926922e-08,
+  "max_tolerance_ratio": 0.17386412767529666,
+  "worst_x": 999371,
+  "minimum_phase_slack_turns": 2.901804817799916e-11,
+  "passed": true,
+  "eightfold_headroom_passed": false,
+  "tolerance_headroom": 5.75161773374879,
+  "max_abs_product": 8594904223822,
+  "max_abs_accumulator": 268435455,
+  "cpu_seconds": 0.21856217900000002,
+  "peak_rss_kib": 75984,
+  "algorithm": {
+    "segments": 32,
+    "degree": 3,
+    "coefficient_fraction_bits": 28,
+    "mantissa_fraction_bits": 21,
+    "horner_rounding": "floor"
+  },
+  "circuit_status": "arithmetic only; reversible synthesis and official verification are next"
+}
