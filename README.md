@@ -28,7 +28,7 @@ The script independently compares scalar and vectorized integer Horner values in
 
 ## Next experiment
 
-Synthesize the reversible kickmix circuit, account for scratch cleanup and rotation precision, and compare measured qubits × Toffoli-equivalents against the reference **260 × 7,988**. Gate cost and official verification are the next measurements.
+Synthesize the reversible kickmix circuit, account for scratch cleanup and rotation precision, and compare measured qubits × Toffoli-equivalents against the paper’s approximate reference **260 × 7,988**. Gate cost and official verification are the next measurements.
 
 References: [benchmark paper](https://arxiv.org/abs/2610.23832), [kickmix](https://github.com/quantumlib/Qualtran/tree/main/kickmix). The arithmetic probe uses the public mathematical contract and its own generated inputs.
 
