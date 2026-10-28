@@ -1,0 +1,26 @@
+{
+  "phase": "complete",
+  "algorithm": {
+    "cells": 1024,
+    "frac": 29,
+    "intercept_bits": 29,
+    "local_change_signed_bits": 19,
+    "delta_bits": 11,
+    "numerator_bits": 40,
+    "rounding": "nearest coefficients; exact product"
+  },
+  "checked": 3133452,
+  "maximum_relative_error": 4.604541190539553e-08,
+  "worst_x": 2098177,
+  "minimum_phase_slack_turns": 9.360823540016317e-12,
+  "passed": true,
+  "max_tolerance_ratio": 0.7725138213457924,
+  "numerator_range": [
+    549756069984,
+    1099511578624
+  ],
+  "max_absolute_product": 535953792,
+  "cpu_seconds": 0.18500418700000004,
+  "peak_rss_kib": 170188,
+  "circuit_status": "arithmetic witness only"
+}

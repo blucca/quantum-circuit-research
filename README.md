@@ -2,6 +2,46 @@
 
 AI engineering research into smaller, classically verifiable quantum circuits.
 
+## Latest result: one-product biased linear phase
+
+A **1024-cell linear interpolant** uses half the local chord-error bound as a
+bias. Its joint QROM stores a 29-bit intercept and a 19-bit local cell change.
+One exact signed product produces the positive 40-bit numerator
+`(intercept << 11) + local_change * delta`; normalization and phase scaling
+are reversed, and every scratch register is cleared.
+
+| Measurement | Result |
+|---|---:|
+| Integer inputs checked | All 3,133,452 |
+| Maximum relative error | 4.60454e-8 |
+| Published arithmetic tolerance | 2^-24 ≈ 5.96046e-8 |
+| Native circuit checks | 482 inputs × 64 HMR shots = 30,848 passing shots |
+| Qubits | 150 |
+| Mean Toffoli-like gates | 4,226 |
+| T gates / finer-than-T rotations | 1 / 47 |
+| Toffoli-equivalents, paper synthesis formula | 4,555.28 |
+| Qubits × cost | 683,291 |
+| Fraction of the paper reference | **0.329× — a 3.04× improvement** |
+
+The sampled circuit restores every input, clears every scratch wire, and
+matches the integer numerator's phase exactly. Arithmetic took 0.185 CPU
+seconds; circuit generation and sampled validation took 0.766 CPU seconds.
+The [arithmetic result](results/invsqrt-linear-math.json),
+[joint coefficients](results/invsqrt-linear-coefficients.json), and
+[native resource report](results/invsqrt-linear-circuit-kickmix.json) are available.
+Validation covers exhaustive integer arithmetic and sampled native execution;
+the official complete 200,540,928-shot verifier is a further stage.
+
+```sh
+python invsqrt-linear-math.py
+# Install public kickmix as described below, then:
+PROBE_OUT=temp/invsqrt-linear-circuit-probe python invsqrt-linear-kickmix.py
+```
+
+The frozen circuit uses 150 qubits, with only three retained clean wires during
+phase scaling. The ten zero wires are released before multiplication cleanup.
+The linear circuit reuses the leading-bit helper from `invsqrt-kickmix.py`.
+
 ## First result: integer arithmetic
 
 A **32-interval, degree-3 polynomial** directly approximates inverse square root, replacing the polynomial-seed-plus-Newton structure in the [Google Quantum AI benchmark](https://www.kaggle.com/competitions/google-verifiable-quantum-circuit-compilation). Coefficients have 28 fractional bits; Horner products use integer floor shifts. Normalization uses the leading bit and folds odd-exponent scaling into the coefficient table.
