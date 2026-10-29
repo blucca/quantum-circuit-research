@@ -42,6 +42,18 @@ The frozen circuit uses 150 qubits, with only three retained clean wires during
 phase scaling. The ten zero wires are released before multiplication cleanup.
 The linear circuit reuses the leading-bit helper from `invsqrt-kickmix.py`.
 
+## Alternative checked: accumulator-free Walsh phases
+
+A [fixed Walsh audit](walsh-phase-audit.md) retains 2,395 normalized-mantissa
+terms under a uniform error rule. Its straight exponent tensor needs 76,640
+fine rotations; rotation-only pricing already exceeds the current public
+comparison by about 136×. The audit and a small runnable script are public.
+
+**Current research status:** arithmetic and sampled-circuit witnesses are
+complete. Active optimization and formal entry are paused: the latest linear
+circuit improves the paper reference by 3.04×, while the public same-task
+comparison reports about 20×.
+
 ## First result: integer arithmetic
 
 A **32-interval, degree-3 polynomial** directly approximates inverse square root, replacing the polynomial-seed-plus-Newton structure in the [Google Quantum AI benchmark](https://www.kaggle.com/competitions/google-verifiable-quantum-circuit-compilation). Coefficients have 28 fractional bits; Horner products use integer floor shifts. Normalization uses the leading bit and folds odd-exponent scaling into the coefficient table.

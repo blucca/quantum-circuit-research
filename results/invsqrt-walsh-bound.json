@@ -1,0 +1,25 @@
+{
+  "basis": "Walsh phase expansion on 21-bit normalized mantissa",
+  "mantissa_grid_points": 2097152,
+  "truncation_l1_budget": 2.1073424255447014e-08,
+  "kept_terms_for_uniform_l1_rule": 2395,
+  "omitted_l1_sum_estimate": 2.1034726738200504e-08,
+  "omitted_l1_with_roundoff_allowance": 2.1054726738200504e-08,
+  "largest_omitted_coefficient_estimate": 3.276346397960636e-11,
+  "previous_omitted_sum_estimate": 2.1067492750326267e-08,
+  "total_coefficient_sum_estimate": 0.9999999999997953,
+  "exponent_basis_terms": 32,
+  "exponent_coefficient_abs_range": [
+    0.0032052513941615737,
+    0.10669254580026662
+  ],
+  "straight_tensor_rotations": 76640,
+  "half_tolerance_phase_slack_at_max_x": 1.683598713601947e-11,
+  "straight_tensor_rotation_only_cost": 641933.3012506653,
+  "straight_tensor_rotation_price_times_22_input_qubits": 14122532.627514638,
+  "floating_audit_roundoff_allowance": 2e-11,
+  "scope": "fixed top-coefficient truncation and 32-term exponent tensor; different encodings priced separately",
+  "native_circuit_built": false,
+  "peak_rss_kib": 184784,
+  "cpu_seconds": 0.22903377800000002
+}
