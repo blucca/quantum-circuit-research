@@ -1,0 +1,18 @@
+{
+  "phase": "math-complete",
+  "checked": 3133452,
+  "maximum_relative_error": 1.9748448979080103e-08,
+  "worst_x": 2,
+  "minimum_phase_slack_turns": 2.7160159979777232e-11,
+  "math_passed": true,
+  "tolerance_ratio": 0.33132399418700637,
+  "cpu_seconds": 0.18256732199999998,
+  "coefficient_bits": [
+    29,
+    21,
+    12
+  ],
+  "local_signed_bits": 14,
+  "exact_numerator_bits": 56,
+  "competitive_circuit": "not built; full lookup/square/cleanup must pass current 104k gate"
+}

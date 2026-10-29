@@ -119,3 +119,16 @@ References: [benchmark paper](https://arxiv.org/abs/2610.23832),
 commit `638777fac4379bc62e2a1e4a52cf1a1753895d48`.
 
 Apache-2.0.
+
+
+## Centered quadratic arithmetic option
+
+A separate frozen representation uses **128 cells, 29 fractional coefficient bits** and a signed14 local coordinate. The intercept is unsigned29, the first derivative signed21, and the curvature unsigned12. An exact 56-bit numerator evaluates all three terms together.
+
+The [all-input result](results/invsqrt-centered-quadratic-math.json) passes **3,133,452 inputs**: maximum relative error **1.975e-8**, tolerance ratio **0.3313**, minimum phase slack **2.716e-11 turns**, CPU **0.183s**. [Coefficients](results/invsqrt-centered-quadratic-coefficients.json) and the scalar/vector cross-check are included.
+
+```sh
+PROBE_OUT=temp/quadratic-math python invsqrt-centered-quadratic-math.py
+```
+
+This is an arithmetic asset. Its serial exact schoolbook circuit would retain a square and two products and exceeds the current approximately104k public resource comparison even under an optimistic construction budget. Native synthesis and competition submission for this option are stopped; the previously measured linear circuit remains unchanged.
